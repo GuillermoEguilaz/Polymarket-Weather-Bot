@@ -5,6 +5,7 @@ import { hideBin } from "yargs/helpers";
 import { BotConfig, loadConfig } from "./config";
 import { badge, panel, stat } from "./colors";
 import { resetSim } from "./simState";
+import logger from "color-logger-console";
 import { run, showPositions, type TradeMode } from "./strategy";
 import { getWalletBalanceUsdViaClob } from "./walletBalance";
 
@@ -52,6 +53,7 @@ function validateKeys(cfg: BotConfig): void {
 }
 
 async function main(): Promise<void> {
+  logger.info("Starting the bot...");
   const argv = await yargs(hideBin(process.argv))
     .scriptName("weatherbot-ts")
     .option("execute", {
