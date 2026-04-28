@@ -1,5 +1,5 @@
 import { Wallet } from "@ethersproject/wallet";
-import { ClobClient, OrderType, Side } from "@polymarket/clob-client";
+import { ClobClient, OrderType, Side } from "@polymarket/clob-client-v2";
 import type { BotConfig } from "./config";
 
 const CLOB_HOST = "https://clob.polymarket.com";
@@ -47,14 +47,14 @@ export async function getApiCreds(cfg: BotConfig): Promise<{
   const wallet = getSignerWallet(cfg);
   const funder = getFunderAddress(cfg, wallet);
   const signatureType = cfg.signature_type;
-  const temp = new ClobClient(
-    CLOB_HOST,
-    CHAIN_ID,
-    wallet,
-    undefined,
+  const temp = new ClobClient({
+    host: CLOB_HOST,
+    chain: CHAIN_ID,
+    signer: wallet,
     signatureType,
-    funder
-  );
+    funderAddress: funder,
+    useServerTime: true,
+  });
 
   let lastError: unknown;
   try {
@@ -88,14 +88,15 @@ export async function getClobClient(cfg: BotConfig): Promise<ClobClient> {
   const { wallet, apiCreds } = await getApiCreds(cfg);
   const signatureType = cfg.signature_type;
   const funder = getFunderAddress(cfg, wallet);
-  return new ClobClient(
-    CLOB_HOST,
-    CHAIN_ID,
-    wallet,
-    apiCreds,
+  return new ClobClient({
+    host: CLOB_HOST,
+    chain: CHAIN_ID,
+    signer: wallet,
+    creds: apiCreds,
     signatureType,
-    funder || undefined
-  );
+    funderAddress: funder || undefined,
+    useServerTime: true,
+  });
 }
 
 export async function buyYesLimit(

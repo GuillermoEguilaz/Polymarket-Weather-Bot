@@ -34,7 +34,7 @@ https://github.com/user-attachments/assets/70ef0168-1671-4057-bb4b-c3435016732b
 
 - **Runtime**: Node.js, TypeScript
 - **Chain**: Polygon
-- **Execution**: Polymarket CLOB via `@polymarket/clob-client`
+- **Execution**: Polymarket CLOB V2 via `@polymarket/clob-client-v2`
 - **Data**: NWS APIs for location-specific weather (see `src/nws.ts` and related modules)
 - **Config**: `.env` for secrets and strategy parameters; `config.json` is not used for runtime config in the primary flows documented below
 
@@ -182,7 +182,7 @@ Polymarket-Weather-Bot/
 
 ### CLOB
 
-Orders use `@polymarket/clob-client` with the configured signer and, when used, the Polymarket proxy as funder.
+Orders use `@polymarket/clob-client-v2` with the configured signer and, when used, the Polymarket proxy as funder.
 
 ### NWS
 

@@ -12,7 +12,7 @@ import {
 } from "./polymarket";
 import { Position, Trade, loadSim, saveSim } from "./simState";
 import { MONTHS } from "./time";
-import type { ClobClient } from "@polymarket/clob-client";
+import type { ClobClient } from "@polymarket/clob-client-v2";
 
 const POSITION_PCT = 0.05;
 const MIN_PAPER_ORDER_USD = 0.5;
@@ -23,7 +23,7 @@ export type TradeMode = "dry-run" | "paper" | "execute";
 export interface RunOptions {
   mode: TradeMode;
   config: BotConfig;
-  /** Polymarket CLOB collateral balance (USDC) — used for sizing in execute mode */
+  /** Polymarket CLOB collateral balance (pUSD / Polymarket USD) — used for sizing in execute mode */
   walletUsd?: number;
 }
 
