@@ -60,7 +60,7 @@ async function main(): Promise<void> {
       type: "boolean",
       default: false,
       describe:
-        "Place real limit orders on Polymarket CLOB (requires USDC + allowance)"
+        "Place real limit orders on Polymarket CLOB (requires pUSD + allowance)"
     })
     .option("live", {
       type: "boolean",
